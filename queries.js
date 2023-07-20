@@ -1,15 +1,15 @@
 const {Pool} = require('pg');
 const pool = new Pool({
-  user: 'me',
+  user: 'bikes_user',
   host: 'localhost',
   database: 'bikes',
-  password: 'password',
-  port: 5433,
+  password: '',
+  port: 5432,
 })
 
 const getJourneys = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT * FROM journeys_05 LIMIT 10', (error, results) => {
+    pool.query('SELECT * FROM journeys_05 LIMIT 100', (error, results) => {
       if (error) {
         reject(error)
       }
@@ -25,7 +25,7 @@ const createJourney = (body) => {
       if (error) {
         reject(error)
       }
-      resolve(`A new journey has been added added: ${results.rows[0]}`)
+      resolve(`A new journey has been added: ${results.rows[0]}`)
     })
   })
 }
