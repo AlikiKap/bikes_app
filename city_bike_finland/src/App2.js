@@ -1,11 +1,13 @@
 import React from 'react';
-import  Home from './pages/Home';
+import DrawerAppBar from './components/DrawerAppBar';
+import { Outlet } from 'react-router-dom';
 
 export default function App2() {
 
     return (
-        <div>
-            <Home/>
-        </div>
+        <>
+            <DrawerAppBar/>
+            <Outlet/>
+        </>
     )
 }
