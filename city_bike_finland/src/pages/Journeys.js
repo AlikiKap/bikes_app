@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Journey from '../components/Journey';
-import Pagination from '../components/Pagination';
 import { useQuery } from '@tanstack/react-query';
+import { Stack } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
 
 
 export default function Journeys() {
 
+  const [page, setPage] = React.useState(1);
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const itemsPerPage = 6;
 
   const { isPending, error, data } = useQuery({
     queryKey: ['getJourneys'],
@@ -13,31 +20,19 @@ export default function Journeys() {
       .then(response => response.json())
   })
 
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6;
-
-  console.log(`DATA: ${typeof data}`);
-  console.log(`DATA: ${data}`);
+  const onPageChanged = (event, value) => {
+    setPage(value);
+    setItemOffset((value * itemsPerPage) % data.length);
+  };
 
   useEffect(() => {
     if (data instanceof Array) {
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(data.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data.length / itemsPerPage));
+      const endOffset = itemOffset + itemsPerPage;
+      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+      setCurrentItems(data.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(data.length / itemsPerPage));
     }
   }, [itemOffset, itemsPerPage, data]);
-
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % data.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
-  };
 
   if (isPending) {
     return <div>Loading...</div>;
@@ -49,15 +44,14 @@ export default function Journeys() {
 
   return (
     <>
-      <div className="journeys">
+      <Stack spacing={2} paddingBottom={2}>
         {currentItems.map(journey => {
           return (
             <Journey journey={journey} />
           )
         })}
-      </div>
-      <Pagination pageCount={pageCount} onPageChange={handlePageClick} />
-
+      </Stack>
+      <Pagination count={pageCount} page={page} onChange={onPageChanged} />
     </>
   );
 }
