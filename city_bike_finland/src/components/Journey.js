@@ -1,18 +1,25 @@
-import { CardContent, Typography } from '@mui/material'
-import Card from '@mui/material/Card'
+import { Card,CardContent, Typography,Stack, useThemeProps } from '@mui/material'
+import EastIcon from '@mui/icons-material/East';
+
+
 
 export default function Journey({journey}){
     return(
-        <Card key={journey.journey_id} sx={{minWidth: 275}}>
+        <Card key={journey.journey_id}>
           <CardContent>
-            <Typography variant="body1">Departure: {string2date(journey.departure)}</Typography>
-            <Typography variant="body1">Return: {string2date(journey.return)}</Typography>
-            <Typography variant="body1">Departure Station ID: {journey.departure_station_id}</Typography>
-            <Typography variant="body1">Departure Station Name: {journey.departure_station_name}</Typography>
-            <Typography variant="body1">Return Station ID: {journey.return_station_id}</Typography>
-            <Typography variant="body1">Return Station Name: {journey.return_station_name}</Typography>
-            <Typography variant="body1">Covered Distance: {journey.covered_distance / 1000} km</Typography>
-            <Typography variant="body1">Duration: {seconds2time(journey.duration)} min</Typography>
+            <Stack justifyContent="center" alignItems="center" direction="row" spacing={3}>
+              <Stack spacing={1}>
+              <Typography style={{ color: '#6d6d6d' }} variant="body1">{string2date(journey.departure)}</Typography>
+              <Typography variant="body1">{journey.departure_station_name}</Typography>
+              </Stack>
+              <EastIcon style={{ color: '#007AC9' }}/>
+              <Stack spacing={1}>
+              <Typography style={{ color: '#6d6d6d' }} variant="body1">{string2date(journey.return)}</Typography>
+              <Typography variant="body1">{journey.return_station_name}</Typography>
+              </Stack>
+              <Typography variant="body1">{journey.covered_distance / 1000} km</Typography>
+              <Typography style={{ color: '#007AC9', fontWeight: 600 }} variant="body1">{seconds2time(journey.duration)} min</Typography>
+            </Stack>
           </CardContent>
       </Card>
     )

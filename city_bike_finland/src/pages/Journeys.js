@@ -3,6 +3,7 @@ import Journey from '../components/Journey';
 import { useQuery } from '@tanstack/react-query';
 import { Stack } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
+import { Grid } from '@mui/material';
 
 
 export default function Journeys() {
@@ -15,7 +16,7 @@ export default function Journeys() {
   const itemsPerPage = 6;
 
   const { isPending, error, data } = useQuery({
-    queryKey: ['getJourneys'],
+    queryKey: ['getJourneys', page, itemsPerPage],
     queryFn: () => fetch("http://localhost:3001/")
       .then(response => response.json())
   })
@@ -44,14 +45,24 @@ export default function Journeys() {
 
   return (
     <>
-      <Stack spacing={2} paddingBottom={2}>
-        {currentItems.map(journey => {
-          return (
-            <Journey journey={journey} />
-          )
-        })}
-      </Stack>
-      <Pagination count={pageCount} page={page} onChange={onPageChanged} />
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        direction="column"
+      >
+        <Stack spacing={2} paddingBottom={2}>
+          {currentItems.map(journey => {
+            return (
+              <Journey journey={journey} />
+            )
+          })}
+
+        </Stack>
+        <Pagination count={pageCount} page={page} onChange={onPageChanged} />
+
+        </Grid>
+      
     </>
   );
 }
