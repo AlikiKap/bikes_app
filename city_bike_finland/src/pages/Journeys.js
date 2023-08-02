@@ -17,7 +17,7 @@ export default function Journeys() {
 
   const { isPending, error, data } = useQuery({
     queryKey: ['getJourneys', page, itemsPerPage],
-    queryFn: () => fetch("http://localhost:3001/")
+    queryFn: () => fetch("http://localhost:3001/journeys")
       .then(response => response.json())
   })
 
