@@ -11,7 +11,6 @@ import {
   } from '@tanstack/react-query';
 import SingleStation from './pages/SingleStation';
 
-
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('container')).render(
@@ -22,8 +21,8 @@ createRoot(document.getElementById('container')).render(
             <Routes>
             <Route path="/" element={<App2/>}>
                 <Route index element={<Journeys/>}/>
-                <Route path="/stations" element={<Stations/>}/>
                 <Route path="/journeys" element={<Journeys/>}/>
+                <Route path="/stations" element={<Stations/>}/>
                 <Route path="/stations/:id" element={<SingleStation/>}/>
                 </Route>
             </Routes>
