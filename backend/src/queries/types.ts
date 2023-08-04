@@ -1,3 +1,8 @@
+export interface Routes {
+  journeys: string;
+  stations: string;
+}
+
 export interface Journey {
     journey_departure: string;
     journey_return: string;
@@ -8,7 +13,8 @@ export interface Journey {
     covered_distance: number;
     duration: number;
   }
+
   export interface Station {
-    departure_station_name: string;
-    return_station_name: string;
+    station_name: string;
+    station_id: number;
   }

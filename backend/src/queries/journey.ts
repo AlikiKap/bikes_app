@@ -3,7 +3,7 @@ import { Journey } from './types';
 
 
 export const getAllJourneys = (req: any, res: any) => {
-    getJourneys()
+    getJourneysData()
     .then(response => {
       res.status(200).send(response);
     })
@@ -12,7 +12,7 @@ export const getAllJourneys = (req: any, res: any) => {
     })
   }
 
-const getJourneys = (): Promise<Journey[]> => new Promise<Journey[]>(function (resolve, reject) {
+const getJourneysData = (): Promise<Journey[]> => new Promise<Journey[]>(function (resolve, reject) {
   pool.query('SELECT * FROM journeys_05 LIMIT 200', (error: Error, results: any) => {
     if (error) 
       return reject(error)
