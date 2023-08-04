@@ -7,8 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-const navItems = ['Journeys', 'Stations'];
-
 function DrawerAppBar() {
 
   return (
@@ -25,7 +23,7 @@ function DrawerAppBar() {
             City Bike Finland
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
+            {['journeys', 'stations'].map((item) => (
               <Button component={Link} to={`/${item}`} key={item} sx={{ color: '#fff' }}>
                 {item}
               </Button>
