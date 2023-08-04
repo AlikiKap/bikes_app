@@ -20,11 +20,11 @@ export default function StationsItem() {
       }
 
     function sortAndGroupByFirstLetter(arr) {
-        const sortedArray = arr.slice().sort((a, b) => a.localeCompare(b));
+        const sortedArray = arr.slice().sort((a, b) => a.station_name.localeCompare(b.station_name));
         const groupedByFirstLetter = {};
 
         for (const item of sortedArray) {
-            const firstLetter = item.charAt(0).toUpperCase();
+            const firstLetter = item.station_name.charAt(0).toUpperCase();
             if (!groupedByFirstLetter[firstLetter]) {
                 groupedByFirstLetter[firstLetter] = [];
             }
@@ -35,7 +35,7 @@ export default function StationsItem() {
     }
 
 
-    const groupedItems = sortAndGroupByFirstLetter(data);
+    const groupedItems = sortAndGroupByFirstLetter(Object.values(data));
     console.log(groupedItems);
 
     return (
