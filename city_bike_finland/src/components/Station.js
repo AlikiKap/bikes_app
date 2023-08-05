@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardContent, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
+
 export default function Station({ station }) {
     return (
         <>

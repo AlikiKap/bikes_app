@@ -1,14 +1,10 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter,Routes,Route} from "react-router-dom";
+import {createRoot} from 'react-dom/client';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Stations from "./pages/Stations";
 import Journeys from "./pages/Journeys";
 import App2 from './App2';
-import {
-    QueryClient,
-    QueryClientProvider,
-    useQuery,
-  } from '@tanstack/react-query';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import SingleStation from './pages/SingleStation';
 
 const queryClient = new QueryClient()
