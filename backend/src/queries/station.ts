@@ -1,42 +1,41 @@
-import {pool} from '../util/db';
-import { Station } from './types';
+import { pool } from '../util/db';
+import { SingleStation, Station } from './types';
 
-export const getAllStations=(req: any, res: any) => {
-  getStationsNamesWithId()
-    .then(response => {
-      res.status(200).send(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-  }
-
-  const getStationsNamesWithId = (): Promise<Station[]> => new Promise<Station[]>(function (resolve, reject) {
-    pool.query(`SELECT station_id, station_name AS station_name FROM (
+export const getStationsNamesWithId = (): Promise<Station[]> => new Promise<Station[]>(function (resolve, reject) {
+  pool.query(`SELECT station_id, station_name AS station_name FROM (
       SELECT departure_station_id AS station_id, departure_station_name AS station_name FROM journeys_05 
       UNION 
       SELECT return_station_id AS station_id, return_station_name AS station_name FROM journeys_05 
   ) AS unique_stations;`, (error: Error, results: any) => {
-    if (error) 
+    if (error)
       return reject(error)
-    
-      resolve(results.rows as Station[]);
-    
+    resolve(results.rows as Station[]);
+
   });
+});
+
+export const getStation = (id: number): Promise<SingleStation> => new Promise<SingleStation>(function (resolve, reject) {
+  pool.query(`WITH StationCounts AS (
+    SELECT
+        COUNT(CASE WHEN departure_station_id = $1 THEN 1 END) AS depart_count,
+        COUNT(CASE WHEN return_station_id = $1 THEN 1 END) AS return_count,
+        COALESCE(
+            (SELECT departure_station_name FROM journeys_05 WHERE departure_station_id = $1 LIMIT 1),
+            (SELECT return_station_name FROM journeys_05 WHERE return_station_id = $1 LIMIT 1)
+        ) AS station_name
+    FROM
+        journeys_05
+    WHERE
+    $1 IN (departure_station_id, return_station_id) limit 1
+)
+SELECT
+    station_name,
+    depart_count,
+    return_count
+FROM
+    StationCounts limit 1;`, [id], (error: Error, results: any) => {
+    if (error)
+      return reject(error)
+    resolve(results.rows[0] as SingleStation);
   });
-
-//   const getStation = (req: any, res: any) => {
-
-//     pool.query('SELECT  FROM journeys_05 where _id = $1 LIMIT 1', ).then(value => {
-
-//         if (!value.rows.length) return res.status(204).send()
-//         res.json(value.rows)
-
-//     }).catch(reason => {
-//         res.status(400).json({
-//             name: reason.name,
-//             message: reason.message
-//         })
-//     })
-
-// }
+});
