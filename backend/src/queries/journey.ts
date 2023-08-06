@@ -1,10 +1,19 @@
+import { log } from 'console';
 import { pool } from '../util/db';
-import { Journey } from './types';
+import { PageData } from './types';
 
-export const getJourneysData = (): Promise<Journey[]> => new Promise<Journey[]>(function (resolve, reject) {
-  pool.query('SELECT * FROM journeys_05 LIMIT 200', (error: Error, results: any) => {
-    if (error)
-      return reject(error)
-    resolve(results.rows as Journey[]);
-  });
-});
+export const getJourneysData = async (itemsPerPage: number, offset: number): Promise<PageData> => {
+  try {
+    const results = await pool.query('SELECT * FROM journeys_05 OFFSET $1 LIMIT $2', [offset, itemsPerPage]);
+    const totalCountResult = await pool.query('SELECT COUNT(*) AS total_count FROM journeys_05');
+    const totalCount: number = totalCountResult.rows[0].total_count;
+    const maxPages = Math.ceil(totalCount / itemsPerPage);
+
+    return {
+      rows: results.rows,
+      totalPages: maxPages
+    };
+  } catch (error) {
+    throw error;
+  }
+};
