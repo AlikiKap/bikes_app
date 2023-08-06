@@ -26,3 +26,8 @@ export interface SingleStation {
   departure_count: number;
 
 }
+
+export interface PageData { 
+  rows: Journey[]; 
+  totalPages: number 
+}
