@@ -7,8 +7,9 @@ import { getAllStations, getStationData } from '../src/routes/station';
 import * as middlewares from './middlewares';
 import api from './api';
 import { Routes } from './queries/types';
-import { uploadData } from './queries/csvImport';
 import multer from 'multer';
+import {uploadData} from './queries/csvImport';
+
 
 const app = express();
 const storage = multer.memoryStorage();
@@ -32,7 +33,7 @@ app.get<{}, Routes>('/', (req, res) => {
 });
 
 app.get('/journeys', getAllJourneys);
-app.post('/upload',upload.single('csv'),uploadData);
+app.post(`/upload`,upload.single('csv'),uploadData);
 app.get('/stations', getAllStations);
 app.get('/stations/:id', getStationData);
 

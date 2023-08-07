@@ -6,6 +6,7 @@ import Journeys from "./pages/Journeys";
 import App2 from './App2';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import SingleStation from './pages/SingleStation';
+import UploadFile from './pages/UploadFile';
 
 const queryClient = new QueryClient()
 
@@ -20,6 +21,7 @@ createRoot(document.getElementById('container')).render(
                 <Route path="/journeys" element={<Journeys/>}/>
                 <Route path="/stations" element={<Stations/>}/>
                 <Route path="/stations/:id" element={<SingleStation/>}/>
+                <Route path="/upload" element={<UploadFile/>}/>
                 </Route>
             </Routes>
             </BrowserRouter>

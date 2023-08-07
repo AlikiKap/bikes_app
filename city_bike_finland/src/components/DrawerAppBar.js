@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Fab } from '@mui/material';
 
 function DrawerAppBar() {
 
@@ -23,7 +24,7 @@ function DrawerAppBar() {
             City Bike Finland
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {['journeys', 'stations'].map((item) => (
+            {['upload','journeys', 'stations'].map((item) => (
               <Button component={Link} to={`/${item}`} key={item} sx={{ color: '#fff' }}>
                 {item}
               </Button>

@@ -3,8 +3,9 @@ import Papa from 'papaparse';
 import { Journey } from './types';
 
 export const uploadData = async (req:any,res:any) => {
-    const table_name = req.query;
+    
     try {
+        const {table_name} = req.query;
       const fileBuffer = req.file.buffer.toString();
       const { data } = Papa.parse(fileBuffer, { header: true });
       
@@ -27,21 +28,22 @@ export const uploadData = async (req:any,res:any) => {
       
       await client.query('BEGIN');
       try {
+
         for (const journey of filteredData) {
-            // await client.query(
-            //     `
-            //     CREATE TABLE $1 (
-            //         journey_departure        TEXT,
-            //         journey_return           TEXT,
-            //         departure_station_id     INTEGER,
-            //         departure_station_name   TEXT,
-            //         return_station_id        INTEGER,
-            //         return_station_name      TEXT,
-            //         covered_distance         NUMERIC,
-            //         duration                 NUMERIC
-            //       );
-            //     `, [table_name]
-            // );
+            await client.query(
+                `
+                CREATE TABLE ${table_name} (
+                    journey_departure        TEXT,
+                    journey_return           TEXT,
+                    departure_station_id     INTEGER,
+                    departure_station_name   TEXT,
+                    return_station_id        INTEGER,
+                    return_station_name      TEXT,
+                    covered_distance         NUMERIC,
+                    duration                 NUMERIC
+                  );
+                `
+            );
           await client.query(
             'INSERT INTO journeys (journey_departure, journey_return, departure_station_id, departure_station_name, return_station_id, return_station_name, covered_distance, duration) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
             [
