@@ -15,7 +15,7 @@ export default function SingleStation() {
 
     if (isPending) return <div>Loading...</div>;
     
-    if (error) return <div>Error retrieving journey data: {error.message}</div>;
+    if (error) return <div>Error retrieving single station data: {error.message}</div>;
 
     return (
         <>

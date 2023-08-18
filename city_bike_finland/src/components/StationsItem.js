@@ -6,14 +6,14 @@ import { useQuery } from '@tanstack/react-query';
 export default function StationsItem() {
 
     const { isPending, error, data } = useQuery({
-        queryKey: ['getJourneys'],
+        queryKey: ['getStations'],
         queryFn: () => fetch("http://localhost:3001/stations")
             .then(response => response.json())
     })
 
     if (isPending) return <div>Loading...</div>;
     
-    if (error) return <div>Error retrieving journey data: {error.message}</div>;
+    if (error) return <div>Error retrieving stations data: {error.message}</div>;
 
     return (
         <>
