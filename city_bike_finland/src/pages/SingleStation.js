@@ -1,7 +1,8 @@
-import { CardContent, Typography, Stack } from '@mui/material'
+import { CardContent, Typography, Stack, Grid } from '@mui/material'
 import Card from '@mui/material/Card'
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 export default function SingleStation() {
 
@@ -13,13 +14,16 @@ export default function SingleStation() {
             .then(response => response.json())
     })
 
-    if (isPending) return <div>Loading...</div>;
-    
+    if (isPending) return (
+        <Loading />
+    )
+
     if (error) return <div>Error retrieving single station data: {error.message}</div>;
 
     return (
         <>
-            <Card>
+        <Grid container justifyContent="center" alignItems="center">
+            <Card style={{width:'50%'}}>
                 <CardContent>
                     <Stack justifyContent="center" alignItems="center" spacing={2}>
                         <Typography variant="h5">{data.station_name}</Typography>
@@ -29,6 +33,9 @@ export default function SingleStation() {
                     </Stack>
                 </CardContent>
             </Card>
-        </>
+            </Grid>
+            </>
+            
+        
     )
 }

@@ -4,6 +4,7 @@ import { Stack } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import { Grid } from '@mui/material';
 import Journey from '../components/Journey'
+import Loading from '../components/Loading';
 
 export default function Journeys() {
 
@@ -24,7 +25,9 @@ export default function Journeys() {
     }
   }, [data]);
 
-  if (isPending) return <div>Loading...</div>;
+  if (isPending) return(
+    <Loading/>
+  )
 
   if (error) return <div>Error retrieving journey data: {error.message}</div>;
 
