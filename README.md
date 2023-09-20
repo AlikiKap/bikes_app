@@ -1,83 +1,129 @@
-# Getting Started with Create React App
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br />
+<div align="center">
+  <h3 align="center">Bikes App</h3>
 
-## Available Scripts
+  <p align="center">
+    <br />
+    <a href="https://github.com/AlikiKap/bikes_app.git"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://alikikap.github.io/bikes_app/">View Demo</a>
+    ·
+    <a href="https://github.com/AlikiKap/bikes_app/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/AlikiKap/bikes_app/issues">Request Feature</a>
+  </p>
+</div>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Table of contents
+1. [About The Project](#about-the-project)
+    * [Task](#task)
+    * [Built With](#built-with)
+2. [Installation](#installation)
+    * [Backend](#backend)
+    * [Frontend](#frontend)
+3. [Usage](#usage)
+4. [License](#license)
+5. [Contact](#contact)
+### Journeys View
+![journeys.png](journeys.png)
+### Stations View
+![stations.png](stations.png)
+### Single Station View
+![singleStation.png](singleStation.png)
+### Upload View
+![upload.png](upload.png)
+## About The Project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This Project was a test task from Solita.
+* Import data from the CSV files to a database or in-memory storage
+* Validate data before importing
+* Don't import journeys that lasted for less than ten seconds
+* Don't import journeys that covered distances shorter than 10 meters
+#### Journeys View
+* List journeys
+* For each journey show departure and return stations, covered distance in kilometers and duration in minutes
+#### Stations View
+* List all the stations
+#### Single Station View
+* Station name
+*  Station address
+*  Total number of journeys starting from the station
+*  Total number of journeys ending at the station
+### Task
+  https://github.com/solita/dev-academy-2023-exercise
+### Built With
+* [![React][React.js]][React-url]
+* ![Static Badge](https://img.shields.io/badge/nodejs-6FBD50?style=for-the-badge&logo=nodedotjs&logoColor=white)
+* ![Static Badge](https://img.shields.io/badge/postgresql-1b81b5?style=for-the-badge&logo=postgresql&logoColor=white)
 
-### `npm test`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more
-information.
+## Installation
+### Backend
+will be added soon
+### Frontend
+Follow these steps to get the project up and running on your local machine:
 
-### `npm run build`
+Clone the repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  git clone https://github.com/AlikiKap/bikes_app.git
+```
+Navigate to the project directory:
+```bash
+  cd bikes_app
+  cd city_bike_finland
+```
+Install the dependencies:
+```bash
+  npm install
+```
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once you have installed the dependencies, you can start the development server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm run start
+```
+This will start the application in development mode, and you can access it in your web browser at http://localhost:3000.
+<br/>
 
-### `npm run eject`
+## License
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will
-remove the single build dependency from your project.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right
-into your project so you have full control over them. All of the commands except `eject` will still work, but they will
-point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contact
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
-shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't
-customize it when you are ready for it.
+Aliki Kapasakalidi - [@AlikiKap](https://www.linkedin.com/in/aliki-kapasakalidi-921891203/) - aliki02.kapasakalidi@gmail.com
 
-## Learn More
+Project Link: [https://github.com/AlikiKap/wolt-delivery-calculator.git](https://github.com/AlikiKap/wolt-delivery-calculator.git)
 
-You can learn more in
-the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[contributors-shield]: https://img.shields.io/github/contributors/AlikiKap/bikes_app.svg?style=for-the-badge
+[contributors-url]: https://github.com/AlikiKap/bikes_app/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/AlikiKap/bikes_app.svg?style=for-the-badge
+[forks-url]: https://github.com/AlikiKap/bikes_app/network/members
+[stars-shield]: https://img.shields.io/github/stars/AlikiKap/bikes_app.svg?style=for-the-badge
+[stars-url]: https://github.com/AlikiKap/bikes_app/stargazers
+[issues-shield]: https://img.shields.io/github/issues/AlikiKap/bikes_app.svg?style=for-the-badge
+[issues-url]: https://github.com/AlikiKap/bikes_app/issues
+[license-shield]: https://img.shields.io/github/license/AlikiKap/bikes_app.svg?style=for-the-badge
+[license-url]: https://github.com/AlikiKap/bikes_app/blob/main/LICENSE
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/aliki-kapasakalidi-921891203/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/

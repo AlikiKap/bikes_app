@@ -2,8 +2,10 @@ import { pool } from '../util/db';
 import Papa from 'papaparse';
 import { Journey } from './types';
 import format from 'pg-format';
+let  fileName:any; 
 
 export const uploadData = async (req: any, res: any) => {
+
   try {
     const fileBuffer = req.file.buffer.toString();
     const { data } = Papa.parse(fileBuffer, { header: true });
@@ -88,9 +90,13 @@ export const uploadData = async (req: any, res: any) => {
       res.status(406).send('Invalid file name.')
     }
 
-
   } catch (err) {
     console.error(err);
     res.status(500).send(`An error occurred. ${(err as Error).message}`);
   }
+
 };
+
+// Export the fileName variable separately for use in other files
+export { fileName };
+

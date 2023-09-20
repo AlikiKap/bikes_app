@@ -1,5 +1,7 @@
 import { pool } from '../util/db';
 import { SingleStation, Station } from './types';
+import {fileName} from './csvImport';
+
 
 export const getStationsNamesWithId = (): Promise<Station[]> => new Promise<Station[]>(function (resolve, reject) {
   pool.query(`SELECT station_id, station_name AS station_name FROM (
@@ -24,7 +26,7 @@ export const getStation = (id: number): Promise<SingleStation> => new Promise<Si
             (SELECT return_station_name FROM journeys_05 WHERE return_station_id = $1 LIMIT 1)
         ) AS station_name
     FROM
-        journeys_05
+    journeys_05
     WHERE
     $1 IN (departure_station_id, return_station_id) limit 1
 )
