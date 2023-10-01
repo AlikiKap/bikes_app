@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Stack } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
-import { Grid } from '@mui/material';
-import Journey from '../components/Journey'
+import { Grid, Stack } from '@mui/material';
+import Journey from '../components/Journey';
 import Loading from '../components/Loading';
+import CustomTabPanel from '../components/CustomTabPanel';
 
 export default function Journeys() {
 
@@ -25,8 +25,8 @@ export default function Journeys() {
     }
   }, [data]);
 
-  if (isPending) return(
-    <Loading/>
+  if (isPending) return (
+    <Loading />
   )
 
   if (error) return <div>Error retrieving journey data: {error.message}</div>;
@@ -40,10 +40,11 @@ export default function Journeys() {
         direction="column"
         paddingBottom={2}
       >
+        <CustomTabPanel/>
         <Stack spacing={2} paddingBottom={2}>
           {currentItems.map(journey => <Journey journey={journey} />)}
         </Stack>
-        <Pagination count={pageCount} page={page} onChange={(_, value) => setPage(value)}/>
+        <Pagination count={pageCount} page={page} onChange={(_, value) => setPage(value)} />
       </Grid>
     </>
   );

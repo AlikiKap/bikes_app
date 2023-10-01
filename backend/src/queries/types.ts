@@ -31,3 +31,6 @@ export interface PageData {
   rows: Journey[]; 
   totalPages: number 
 }
+export interface Table {
+  table_name: string;
+}

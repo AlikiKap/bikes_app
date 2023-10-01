@@ -27,7 +27,7 @@ export default function UploadFile() {
   function uploadFile(event) {
     const file = document.getElementById('fileInput').files[0];
     const formData = new FormData()
-
+    console.log(formData);
     if (!file) {
       alert('Please select a file to upload.')
       return;

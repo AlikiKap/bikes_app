@@ -2,7 +2,8 @@ import { pool } from '../util/db';
 import Papa from 'papaparse';
 import { Journey } from './types';
 import format from 'pg-format';
-let  fileName:any; 
+
+let fileName:string; 
 
 export const uploadData = async (req: any, res: any) => {
 
@@ -26,7 +27,7 @@ export const uploadData = async (req: any, res: any) => {
 
     const client = await pool.connect();
 
-    const fileName = req.file.originalname.replace('.csv', '').toLowerCase()
+    fileName = req.file.originalname.replace('.csv', '').toLowerCase()
 
     const fileNameRegex = /^[A-Za-z][A-Za-z0-9_$#]{0,127}$/;
 
@@ -63,6 +64,7 @@ export const uploadData = async (req: any, res: any) => {
             journey.duration
           ]
         })
+        
   
         await client.query(format(insertQuery, result), [], (err) => {
           console.log({
@@ -97,6 +99,5 @@ export const uploadData = async (req: any, res: any) => {
 
 };
 
-// Export the fileName variable separately for use in other files
 export { fileName };
 

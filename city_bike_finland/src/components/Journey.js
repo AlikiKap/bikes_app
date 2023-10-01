@@ -1,4 +1,4 @@
-import { Card,CardContent, Typography,Stack, useThemeProps } from '@mui/material'
+import { Card,CardContent, Typography,Stack } from '@mui/material'
 import EastIcon from '@mui/icons-material/East';
 
 
@@ -30,12 +30,11 @@ function seconds2time(seconds) {
   const remainingSeconds = seconds % 60;
   const formattedMinutes = String(minutes).padStart(2, '0');
   const formattedSeconds = String(remainingSeconds).padStart(2, '0');
-    
   return `${formattedMinutes}:${formattedSeconds}`;
 }
 function string2date(inputDateString){
-
 const dateObject = new Date(inputDateString);
+console.log(dateObject, typeof dateObject);
 
 const day = dateObject.getUTCDate().toString().padStart(2, "0");
 const month = (dateObject.getUTCMonth() + 1).toString().padStart(2, "0"); 
@@ -45,7 +44,6 @@ const hours = dateObject.getUTCHours().toString().padStart(2, "0");
 const minutes = dateObject.getUTCMinutes().toString().padStart(2, "0");
 
 const formattedDate = `${day}/${month}/${year}`;
-const formattedTime = `${hours}:${minutes}`;
-
+const formattedTime = (`${hours}:${minutes}`);
 return(`${formattedTime}, ${formattedDate}`);
 }

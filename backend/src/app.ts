@@ -9,6 +9,7 @@ import api from './api';
 import { Routes } from './queries/types';
 import multer, { memoryStorage } from 'multer';
 import {uploadData} from './queries/csvImport';
+import { getAllTables } from './queries/tables';
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.get<{}, Routes>('/', (req, res) => {
 });
 
 app.get('/journeys', getAllJourneys);
+app.get('/tables', getAllTables);
 app.post('/upload',upload.single('csv'),uploadData);
 app.get('/stations', getAllStations);
 app.get('/stations/:id', getStationData);

@@ -5,9 +5,9 @@ import {fileName} from './csvImport';
 
 export const getStationsNamesWithId = (): Promise<Station[]> => new Promise<Station[]>(function (resolve, reject) {
   pool.query(`SELECT station_id, station_name AS station_name FROM (
-      SELECT departure_station_id AS station_id, departure_station_name AS station_name FROM journeys_05 
+      SELECT departure_station_id AS station_id, departure_station_name AS station_name FROM ${fileName} 
       UNION 
-      SELECT return_station_id AS station_id, return_station_name AS station_name FROM journeys_05
+      SELECT return_station_id AS station_id, return_station_name AS station_name FROM ${fileName}
   ) AS unique_stations;`, (error: Error, results: any) => {
     if (error)
       return reject(error)
@@ -22,11 +22,11 @@ export const getStation = (id: number): Promise<SingleStation> => new Promise<Si
         COUNT(CASE WHEN departure_station_id = $1 THEN 1 END) AS depart_count,
         COUNT(CASE WHEN return_station_id = $1 THEN 1 END) AS return_count,
         COALESCE(
-            (SELECT departure_station_name FROM journeys_05 WHERE departure_station_id = $1 LIMIT 1),
-            (SELECT return_station_name FROM journeys_05 WHERE return_station_id = $1 LIMIT 1)
+            (SELECT departure_station_name FROM ${fileName} WHERE departure_station_id = $1 LIMIT 1),
+            (SELECT return_station_name FROM ${fileName} WHERE return_station_id = $1 LIMIT 1)
         ) AS station_name
     FROM
-    journeys_05
+    ${fileName}
     WHERE
     $1 IN (departure_station_id, return_station_id) limit 1
 )
